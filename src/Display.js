@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 export default class Display extends Component {
     state = {
         data: "",
@@ -10,19 +9,30 @@ export default class Display extends Component {
             data: event.target.value
         })
     }
+    makeempty(){
+        this.setState(
+            {
+                data:"",
+            }
+        )
+    }
     render() {
         return (
-            <div>
+            <>
+                <div style={{ display: "flex", height: "50vh" }}>
+                    Enter name:
+                    <div style={{padding:"20px"}}>
+                    <div style={{ height: "fit-content", width: "fit-content", backgroundColor: "white", borderRadius: "40px", paddingLeft: "10px",paddingRight:"10px", border: "1px solid", textAlign: "center", justifyContent: "center", }}>
+                        <input type="text" onChange={(e) => { this.changeHandler(e) }} value={this.state.data}
+                            style={{ border: "0px", outline: "none", padding: "10px" }}>
+                        </input>
+                    </div>
+                    </div>
+                    <button className='btn btn-outline-dark' onClick={()=>{this.props.nameHandle(this.state.data)
+                    this.makeempty()}}>Add name</button>
+                </div>
                 
-                <div style={{ height: "fit-content", width: "fit-content", backgroundColor: "white", borderRadius: "40px", padding: "10px", border: "1px solid", textAlign: "center", justifyContent: "center", }}>
-                    <input type="text" onChange={(e) => { this.changeHandler(e) }}
-                        style={{ border: "0px", outline: "none", padding: "10px" }}>
-                    </input>
-                </div>
-                <div style={{ textAlign: "center", justifyContent: "center", padding: "10px" }}>
-                    {this.state.data}
-                </div>
-            </div>
+            </>
         )
     }
 }
